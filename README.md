@@ -82,6 +82,16 @@ Order_ID, Customer_ID, Book_ID, Order_Date, Quantity, Total_Amount
 ✔ Remaining stock after all orders  
 
 
+## 🧩 How to Run This Project
+
+1) Create a database in PostgreSQL
+2) Import Books.csv, Customers.csv, Orders.csv
+3) Run the SQL script file
+4) Execute Queries for analysis
+
+This project was executed using pgAdmin & PostgreSQL.
+
+
 ## 🧰 Tech Stack
 
 - PostgreSQL
