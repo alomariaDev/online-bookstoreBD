@@ -23,6 +23,15 @@ def get_db():
 DbSession = Annotated[Session, Depends(get_db)]
 
 
+@app.get("/", tags=["Sistema"])
+def root():
+    return {
+        "service": "Online Bookstore API",
+        "docs": "/docs",
+        "health": "/health",
+    }
+
+
 @app.get("/health", tags=["Sistema"])
 def health(db: DbSession):
     db.execute(select(1))
