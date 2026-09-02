@@ -1,4 +1,4 @@
-m-- Esquema normalizado para una librería en línea (PostgreSQL)
+-- Esquema normalizado para una librería en línea (PostgreSQL)
 -- Un pedido puede contener uno o varios libros mediante detalle_pedido.
 
 DROP TABLE IF EXISTS detalle_pedido;
