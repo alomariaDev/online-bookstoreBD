@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: online-bookstore-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-online_bookstorebd}
+      POSTGRES_USER: ${POSTGRES_USER:-bookstore_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-bookstore_dev_password}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./schema_libreria.sql:/docker-entrypoint-initdb.d/01-schema.sql:ro
+      - ./migracion_datos.sql:/docker-entrypoint-initdb.d/02-migracion.sql:ro
+      - ./Books.csv:/data/Books.csv:ro
+      - ./Customers.csv:/data/Customers.csv:ro
+      - ./Orders.csv:/data/Orders.csv:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  postgres_data:

@@ -21,6 +21,17 @@ The project uses three CSV files:
 
 ## 🗄 Database Tables
 
+### Modelo normalizado propuesto
+
+El archivo [schema_libreria.sql](schema_libreria.sql) contiene un esquema PostgreSQL de cuatro tablas y [modelo_entidad_relacion.md](modelo_entidad_relacion.md) su diagrama ER editable. Este modelo separa la cabecera del pedido de sus productos, por lo que cada pedido puede incluir varios libros.
+
+- `clientes`: datos de los compradores.
+- `libros`: catálogo, precio actual e inventario.
+- `pedidos`: cabecera de la compra y su estado.
+- `detalle_pedido`: libros, cantidades y precio histórico de cada pedido.
+
+Para levantar una base PostgreSQL local con este esquema, sigue [postgres_setup.md](postgres_setup.md). La configuración se encuentra en `docker-compose.yml`.
+
 ### 🟦 Books Table
 Stores book-related data such as:
 Book_ID, Title, Author, Genre, Published_Year, Price, Stock
@@ -109,4 +120,3 @@ B.Tech — Computer Science & Engineering
 ---
 
 ⭐ If you like this project, feel free to Star the repository 🙂
-
