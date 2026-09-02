@@ -22,5 +22,17 @@ services:
       timeout: 5s
       retries: 10
 
+  backend:
+    build: ./backend
+    container_name: online-bookstore-backend
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg://bookstore_user:bookstore_dev_password@postgres:5432/online_bookstorebd
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
 volumes:
   postgres_data:
